@@ -5,7 +5,7 @@
 using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 
-namespace Ludit.Game.World
+namespace Ludit.exe.Game.World
 {
     
     /// <summary>

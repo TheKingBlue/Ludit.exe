@@ -1,2 +1,4 @@
-﻿using var game = new Ludit.exe.Game1();
+﻿using Ludit.exe;
+
+var game = new Game1();
 game.Run();

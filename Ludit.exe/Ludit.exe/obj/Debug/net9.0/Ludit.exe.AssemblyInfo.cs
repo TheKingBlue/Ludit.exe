@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ludit.exe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+073a0ea59465c69f6eb5e63a54056abda16f294d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e160aaa04526d504eb3248e7e6da4a89f61b0973")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ludit.exe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ludit.exe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,5 +15,19 @@ namespace Ludit.exe.Services
             _random = new Random();
             _currentseed = null;
         }
+
+        // Reproducable dungeon
+        public static void Initialize(int seed)
+        {
+            _random = new Random(seed);
+            _currentseed = seed;
+        }
+
+        public static void Reset()
+        {
+            _random = new Random();
+            _currentseed = null;
+        }
+
     }
 }

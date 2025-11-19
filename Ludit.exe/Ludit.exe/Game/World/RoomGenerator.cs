@@ -84,6 +84,7 @@ namespace Ludit.exe.Game.World
             }
         }
 
+        // Connecting Rooms
         private void CreateCorridors()
         {
             for (int i = 0; i < rooms.Count - 1; i++)
@@ -103,7 +104,7 @@ namespace Ludit.exe.Game.World
             int centerB_Y = roomB.CenterY();
 
             // Randomly choose horizontal of vertical first 
-            if (random.Next(0, 2) == 0)
+            if (random.Next(0, 2) == 0) // without randomizer every corridor would be the same
             {
                 // Horizontal first
                 CreateHorizontalTunnel(centerA_X, centerB_X, centerA_Y);
@@ -138,7 +139,5 @@ namespace Ludit.exe.Game.World
                 tilemap.SetTile(x, y, TileType.Floor);
             }
         }
-
-
     }
 }

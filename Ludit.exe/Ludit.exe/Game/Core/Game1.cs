@@ -11,7 +11,6 @@ public class Game1 : Microsoft.Xna.Framework.Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Tilemap _tilemap; // stores dungeon grid
-    private RoomGenerator _roomGenerator; // Creates dungeon layout
     private Dictionary<TileType, Texture2D> _tileTextures; // Maps each tile to the correct PNG
     private const int TILE_SIZE = 32; // Size of each tile
 
@@ -29,9 +28,8 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
         _tilemap = new Tilemap(50, 50);
 
-        _roomGenerator = new RoomGenerator(_tilemap);
-
-        _roomGenerator.Generate();
+        DungeonGenerator dungeonGenerator = new DungeonGenerator(_tilemap);
+        dungeonGenerator.Generate();
 
         base.Initialize();
     }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using Ludit.exe.Game.World;
 
 namespace Ludit.exe;
 
@@ -8,6 +10,10 @@ public class Game1 : Microsoft.Xna.Framework.Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Tilemap _tilemap; // stores dungeon grid
+    private RoomGenerator _roomGenerator; // Creates dungeon layout
+    private Dictionary<TileType, Texture2D> _tileTextures; // Maps each tile to the correct PNG
+    private const int TILE_SIZE = 32; // Size of each tile
 
     public Game1()
     {
@@ -18,7 +24,11 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        _tilemap = new Tilemap(50, 50);
+
+        _roomGenerator = new RoomGenerator(_tilemap);
+
+        _roomGenerator.Generate();
 
         base.Initialize();
     }
@@ -27,7 +37,11 @@ public class Game1 : Microsoft.Xna.Framework.Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        _tileTextures = new Dictionary<TileType, Texture2D>();
+
+        // Load textures from Content folder
+        _tileTextures[TileType.Floor] = Content.Load<Texture2D>("Textures/Tilesets/Floor_Tile");
+        _tileTextures[TileType.Wall] = Content.Load<Texture2D>("Textures/Tilesets/Wall_Tile");
     }
 
     protected override void Update(GameTime gameTime)
@@ -44,7 +58,11 @@ public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+
+        _tilemap.Draw(_spriteBatch, _tileTextures, TILE_SIZE);
+
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }

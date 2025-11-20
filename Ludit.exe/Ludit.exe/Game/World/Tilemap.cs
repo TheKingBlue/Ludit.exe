@@ -59,7 +59,7 @@ namespace Ludit.exe.Game.World
         {
             if (IsInBounds(x, y))
             {
-                tiles[x, y].setType(type); // Update tile type and properties
+                tiles[x, y].SetType(type); // Update tile type and properties
             }
         }
 
@@ -70,7 +70,7 @@ namespace Ludit.exe.Game.World
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    tiles[x, y].setType(type);
+                    tiles[x, y].SetType(type);
                 }
             }
         }

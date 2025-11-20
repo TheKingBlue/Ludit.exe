@@ -4,6 +4,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Ludit.exe.Game.World
 {
@@ -58,7 +59,7 @@ namespace Ludit.exe.Game.World
         {
             if (IsInBounds(x, y))
             {
-                tiles[x, y].SetType(type); // Update tile type and properties
+                tiles[x, y].setType(type); // Update tile type and properties
             }
         }
 
@@ -69,13 +70,13 @@ namespace Ludit.exe.Game.World
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    tiles[x, y].SetType(type);
+                    tiles[x, y].setType(type);
                 }
             }
         }
 
         // render the tilemap
-        public void Draw(SpriteBatch spriteBatch, Texture2D texture, int tileSize)
+        public void Draw(SpriteBatch spriteBatch, Dictionary<TileType, Texture2D> tileTextures, int tileSize)
         {
             for (int x = 0; x < Width; x++)
             {
@@ -85,8 +86,11 @@ namespace Ludit.exe.Game.World
                     // convert grid position to pixel position
                     Rectangle destinationRect = new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
                     // select sprite from texture based on TextureIndex
-                    Rectangle sourceRect = new Rectangle(tile.TextureIndex * tileSize, 0, tileSize, tileSize);
-                    spriteBatch.Draw(texture, destinationRect, sourceRect, tile.TintColor);
+                    if (tileTextures.ContainsKey(tile.Type))
+                    {
+                        Texture2D currentTexture = tileTextures[tile.Type];
+                        spriteBatch.Draw(currentTexture, destinationRect, Color.White);
+                    }
                 }
             }
         }

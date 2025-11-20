@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using Ludit.exe.Services;
 
 namespace Ludit.exe.Game.World
 {
     public class RoomGenerator
     {
         private Tilemap tilemap;
-        private Random random;
         private List<Room> rooms;
 
         // Configuration aka dungeon feel
@@ -21,10 +21,9 @@ namespace Ludit.exe.Game.World
         public int MaxRoomSize { get; set; } = 10; // prevents huge rooms
         public int RoomBuffer { get; set; } = 1; // Spacing between rooms
 
-        public RoomGenerator(Tilemap tilemap, int? seed = null) // the ? behind int makes in nullable
+        public RoomGenerator(Tilemap tilemap)
         {
             this.tilemap = tilemap;
-            this.random = seed.HasValue ? new Random(seed.Value) : new Random();
             this.rooms = new List<Room>();
         }
 
@@ -42,12 +41,12 @@ namespace Ludit.exe.Game.World
             for (int i = 0; i < MaxRooms; i++)
             {
                 // Generate random dimensions
-                int width = random.Next(MinRoomSize, MaxRoomSize + 1);
-                int height = random.Next(MinRoomSize, MaxRoomSize + 1);
+                int width = RNGService.Next(MinRoomSize, MaxRoomSize + 1);
+                int height = RNGService.Next(MinRoomSize, MaxRoomSize + 1);
 
                 // Generate random positions
-                int x = random.Next(1, tilemap.Width - width - 1);
-                int y = random.Next(1, tilemap.Height - height - 1);
+                int x = RNGService.Next(1, tilemap.Width - width - 1);
+                int y = RNGService.Next(1, tilemap.Height - height - 1);
 
                 Room newRoom = new Room(x, y, width, height);
 
@@ -104,7 +103,7 @@ namespace Ludit.exe.Game.World
             int centerB_Y = roomB.CenterY();
 
             // Randomly choose horizontal of vertical first 
-            if (random.Next(0, 2) == 0) // without randomizer every corridor would be the same
+            if (RNGService.Next(0, 2) == 0) // without randomizer every corridor would be the same
             {
                 // Horizontal first
                 CreateHorizontalTunnel(centerA_X, centerB_X, centerA_Y);

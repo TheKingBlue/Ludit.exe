@@ -24,6 +24,9 @@ public class Game1 : Microsoft.Xna.Framework.Game
 
     protected override void Initialize()
     {
+        int seed = 12345;
+        RNGService.Initialize(seed);
+
         _tilemap = new Tilemap(50, 50);
 
         _roomGenerator = new RoomGenerator(_tilemap);

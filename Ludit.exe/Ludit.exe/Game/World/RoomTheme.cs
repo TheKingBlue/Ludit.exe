@@ -104,6 +104,26 @@ namespace Ludit.exe.Game.World
             return WallTextureVariants[index];
         }
 
+        public string GetRandomEnemyType()
+        {
+            if (EnemyTypes.Count == 0)
+                return null;
+
+            int index = Services.RNGService.Next(0, EnemyTypes.Count);
+            return EnemyTypes[index];
+        }
+
+        public string GetRandomLootType()
+        {
+            if (LootTypes.Count == 0)
+                return null;
+
+            int index = Services.RNGService.Next(0, LootTypes.Count);
+            return LootTypes[index];
+        }
+
+        
+
     }
 
 

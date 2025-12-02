@@ -88,6 +88,21 @@ namespace Ludit.exe.Game.World
             MusicTrackId = null;
         }
 
+        public int GetRandomFloorTexture()
+        {
+            if (FloorTextureVariants.Count == 0) return 1; // if list empty return default texture
+
+            int index = Services.RNGService.Next(0, FloorTextureVariants.Count);
+            return FloorTextureVariants[index];
+        }
+
+        public int GetRandomWallTexture()
+        {
+            if (WallTextureVariants.Count == 0) return 1; // if list empty return default texture
+
+            int index = Services.RNGService.Next(0, WallTextureVariants.Count);
+            return WallTextureVariants[index];
+        }
 
     }
 

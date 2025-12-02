@@ -122,6 +122,21 @@ namespace Ludit.exe.Game.World
             return LootTypes[index];
         }
 
+        public bool ShouldSpawnEnemies()
+        {
+            return Services.RNGService.NextDouble() < EnemySpawnChance; // Rolls the dice to see if enemies should spawn
+        }
+
+        public bool ShouldSpawnLoot()
+        {
+            return Services.RNGService.NextDouble() < LootSpawnChance; // Rolls the dice to see if loot should spawn
+        }
+
+        public bool ShouldSpawnHazard()
+        {
+            return Services.RNGService.NextDouble() < HazardSpawnChance; // Rolls the dice to see if hazard should spawn
+        }
+
         
 
     }

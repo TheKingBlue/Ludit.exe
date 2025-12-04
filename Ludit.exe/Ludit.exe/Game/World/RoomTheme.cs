@@ -137,6 +137,21 @@ namespace Ludit.exe.Game.World
             return Services.RNGService.NextDouble() < HazardSpawnChance; // Rolls the dice to see if hazard should spawn
         }
 
+        public int GetEnemyCount()
+        {
+            return Services.RNGService.Next(MinEnemies, MaxEnemies + 1); // Gets a random number of enemies to spawn, between min- and maxenemies.
+        }
+
+        public int GetLootCount()
+        {
+            return Services.RNGService.Next(MinLootItems, MaxLootItems + 1); // Gets a random number of loot items to spawn, between min- and maxlootitems.
+        }
+
+        public override string ToString()
+        {
+            return $"Theme: {Name} ({Description})"; // Debug homie
+        }
+
         
 
     }

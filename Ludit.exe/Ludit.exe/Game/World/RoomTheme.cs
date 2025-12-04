@@ -151,12 +151,60 @@ namespace Ludit.exe.Game.World
         {
             return $"Theme: {Name} ({Description})"; // Debug homie
         }
-
-        
-
     }
 
+    // Theme presets
+    // This is a "factory" class that creates pre-made themes for us
+    // Instead of manually setting every property, we can just call a theme.
+    public static class RoomThemePresets
+    {
+        // EXAMPLE: CREATES A DARK STONE DUNGEON THEME
+        public static RoomTheme CreateDungeonTheme()
+        {
+            return new RoomTheme
+            {
+                Name = "Dungeon",
+                Description = "A dark stone dungeon filled with dangers",
 
+                // Visual properties
+                FloorType = TileType.Floor,
+                WallType = TileType.Wall,
+                PrimaryColor = new Color(80, 80, 90),      // Dark gray-blue
+                SecondaryColor = new Color(60, 60, 70),    // Even darker
+                AmbientLight = new Color(200, 200, 220),   // Cool, dim lighting
+                LightIntensity = 0.7f,                     // Somewhat dark
+
+                FloorTextureVariants = new List<int> { 1 },
+                WallTextureVariants = new List<int> { 2 },
+
+                // Enemy properties
+                EnemyTypes = new List<string> {"Skeleton", "Rat", "Spider"},
+                MinEnemies = 2,
+                MaxEnemies = 5,
+                EnemySpawnChance = 0.8f, // 80% chance to spawn enemies
+
+                // Loot properties
+                LootTypes = new List<string> {"Gold", "HealthPotion", "Key"},
+                MinLootItems = 1,
+                MaxLootItems = 3,
+                LootSpawnChance = 0.4f, // 40% chance to spawn loot
+
+                // Hazards
+                HazardTypes = new List<string> {"Spike", "PoisonTrap"},
+                HazardSpawnChance = 0.2f,
+
+                DifficultyMultiplier = 1.0f, // Normal difficulty
+
+                // Decorations
+                DecorationTypes = new List<string> { "Torch", "Chain", "BrokenArmor" },
+                DecorationDensity = 0.3f,
+
+                // Audio
+                AmbientSoundId = "dungeon_ambient",
+                MusicTrackId = "dungeon_theme"
+            };
+        }
+    }
 }
 
 
